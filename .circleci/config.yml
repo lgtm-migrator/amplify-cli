@@ -53,12 +53,23 @@ jobs:
       - restore_cache:
           key: >-
             amplify-cli-yarn-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - restore_cache:
+          key: >-
+            amplify-cli-node-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - restore_cache:
+          key: >-
+            ~/.ssh
       - run: yarn run production-build
       - save_cache:
           key: >-
             amplify-cli-yarn-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache
+      - save_cache:
+          key: >-
+            amplify-cli-node-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/repo/.node_modules
       - save_cache:
           key: amplify-cli-ssh-deps-{{ .Branch }}
           paths:
