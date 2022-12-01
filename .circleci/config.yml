@@ -58,7 +58,7 @@ jobs:
             amplify-cli-node-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - restore_cache:
           key: >-
-            ~/.ssh
+            amplify-cli-ssh-deps-{{ .Branch }}
       - run: yarn run production-build
       - save_cache:
           key: >-
