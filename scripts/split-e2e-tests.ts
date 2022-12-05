@@ -81,7 +81,6 @@ const WINDOWS_TEST_SKIP_LIST: string[] = [
   'notifications-in-app-messaging-env-1_pkg',
   'notifications-sms_pkg',
   'notifications-sms-pull_pkg',
-  'schema-function-1_pkg',
   'schema-iterative-rollback-1',
   'schema-iterative-rollback-2',
   'storage_migration_update_v5',
