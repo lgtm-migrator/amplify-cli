@@ -562,7 +562,7 @@ function chain(context: Context): ExecutionContext {
         if (lines?.length && lines.length > 1 && lines[lines.length - 1] === 'ision it in the cloud'
         ) {
           // HACK TO FIX STRANGE LINE SPLIT ERROR ON WINDOWS
-          stdout = stdout.concat(lines.slice(0, -2).concat(lines[lines.length - 2].trim() + lines[lines.length - 1]));
+          stdout = stdout.concat(lines.slice(0, -2).concat(`${lines[lines.length - 2].trim()} ${lines[lines.length - 1]}`));
         }
       } else {
         stdout = stdout.concat(lines);
