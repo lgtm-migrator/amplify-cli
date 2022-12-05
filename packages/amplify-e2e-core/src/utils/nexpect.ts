@@ -556,8 +556,17 @@ function chain(context: Context): ExecutionContext {
         data = strip(data);
       }
 
-      const lines = data.split(EOL).filter(line => line.length > 0 && line !== '\r');
-      stdout = stdout.concat(lines);
+      let lines = data.split(EOL).filter(line => line.length > 0 && line !== '\r');
+
+      if (process.platform === 'win32') {
+        if (lines?.length && lines.length > 1 && lines[lines.length - 1] === 'ision it in the cloud'
+        ) {
+          // HACK TO FIX STRANGE LINE SPLIT ERROR ON WINDOWS
+          stdout = stdout.concat(lines.slice(0, -2).concat(lines[lines.length - 2].trim() + lines[lines.length - 1]));
+        }
+      } else {
+        stdout = stdout.concat(lines);
+      }
 
       while (lines.length > 0) {
         evalContext(lines.shift(), null);
